@@ -320,9 +320,10 @@ pOutlierFinderChiSqNoCorr=function(DataList, Fstbar, dfInferred, qthreshold=0.05
   pList = pTwoSidedFromChiSq(DataListGood$FSTNoCorr*(dfInferred)/Fstbar,dfInferred)
   pListRightTail = 1-pchisq(DataListGood$FSTNoCorr*(dfInferred)/Fstbar,dfInferred)
   
-  qtemp=qvalue(pListRightTail,fdr.level=qthreshold,pi0.method="bootstrap")
+  qtemp=qvalue(pListRightTail,fdr.level=qthreshold)
   #Note:  Using the bootstrap method here seems OK, but if this causes problems remove the pi0.method="bootstrap" in the previous line to revert to the default.
-  
+  #Puritz edit: I removed the pi0.method="bootstrap" method
+ 
   DataListGood$pvalues = pList
   DataListGood$pvaluesRightTail = pListRightTail
   DataListGood$qvalues = qtemp$qvalues
